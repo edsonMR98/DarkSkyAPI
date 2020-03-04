@@ -3,13 +3,13 @@ from darksky.types import languages, units, weather
 from geopy.geocoders import Nominatim
 
 geolocator = Nominatim(user_agent="specify_your_app_name_here")
-location = geolocator.geocode("Ciudad de Mexico, Mexico")
+location = geolocator.geocode("Ciudad de Mexico, Mexico") # Gets a location from a address
 
 API_KEY = 'KEY'
 
 darksky = DarkSky(API_KEY)
 
-forecast = darksky.get_forecast(
+forecast = darksky.get_forecast( # Gets the forecast
     location.latitude,
     location.longitude,
     extend=False, # default `False`
@@ -19,13 +19,13 @@ forecast = darksky.get_forecast(
     #timezone='UTC' # default None - will be set by DarkSky API automatically
 )
 
-
-location = geolocator.reverse(f'{forecast.latitude}, {forecast.longitude}')
+location = geolocator.reverse(f'{forecast.latitude}, {forecast.longitude}') # Gets a location from lat and lan
 print(f'{location.raw["address"]["state"]}, {location.raw["address"]["country"]} = lat: {location.latitude} - lon: {location.longitude} ')
 print(f'Temperature: {forecast.currently.temperature}°')
 print(f'Current summary: {forecast.currently.summary}')
 print(f'Timezone: {forecast.timezone}')
 
+# Daily summary
 print('''\n  ---------------------------------------------------------------------
       Date      Temperature(avg)              Date summary
   ---------------------------------------------------------------------''')
