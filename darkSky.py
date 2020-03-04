@@ -5,7 +5,7 @@ from geopy.geocoders import Nominatim
 geolocator = Nominatim(user_agent="specify_your_app_name_here")
 location = geolocator.geocode("Ciudad de Mexico, Mexico")
 
-API_KEY = '34c1183964f3da3d546e551b2f863648'
+API_KEY = 'KEY'
 
 darksky = DarkSky(API_KEY)
 
