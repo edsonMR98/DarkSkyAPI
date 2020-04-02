@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	client := darksky.New("KEY")
+	client := darksky.New("KEY") // Create a client
 
-	request := darksky.ForecastRequest{
+	request := darksky.ForecastRequest{ // Build a request
 		Latitude:  19.4327224,
 		Longitude: -99.1333089,
 		Options: darksky.ForecastRequestOptions{
@@ -20,13 +20,13 @@ func main() {
 		},
 	}
 
-	forecast, err := client.Forecast(request)
+	forecast, err := client.Forecast(request) // Get the forecast
 	if err != nil {
 		panic(err)
 	}
 
+	// Gets info about all properties of forecast (ForecastResponse struct)
 	e := reflect.ValueOf(&forecast).Elem()
-
 	for i := 0; i < e.NumField(); i++ {
 		varName := e.Type().Field(i).Name
 		varType := e.Type().Field(i).Type
@@ -34,6 +34,7 @@ func main() {
 		fmt.Printf("%v %v %v\n", varName, varType, varValue)
 	}
 
+	// Prints data from forecast
 	fmt.Printf("Latitud: %v - Longitud: %v\n", forecast.Latitude, forecast.Longitude)
 	fmt.Printf("Temperature: %v°\n", forecast.Currently.Temperature)
 	fmt.Printf("Current summary: %v\n", forecast.Currently.Summary)
